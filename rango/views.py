@@ -1,4 +1,9 @@
 from django.shortcuts import render
+from rango.models import Category
 
 def index(request):
-    return render(request, 'rango/index.html')
+    category_list = Category.objects.all()
+
+    context_dict = {'categories': category_list}
+
+    return render(request, 'rango/index.html', context=context_dict)
