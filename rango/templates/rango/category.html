@@ -5,23 +5,28 @@
 </head>
 
 <body>
-    {% if category %}
-        <h1>{{ category.name }}</h1>
 
-        {% if pages %}
-            <ul>
-                {% for page in pages %}
-                    <li>
-                        <a href="{{ page.url }}">{{ page.title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>No pages currently in this category.</strong>
-        {% endif %}
+{% if category %}
+    <h1>{{ category.name }}</h1>
+
+    {% if pages %}
+        <ul>
+            {% for page in pages %}
+                <li>
+                    <a href="{{ page.url }}">{{ page.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     {% else %}
-        <strong>The specified category does not exist.</strong>
+        <strong>No pages currently in this category.</strong>
     {% endif %}
+
+    <br>
+    <a href="{% url 'rango:add_page' category.name %}">Add a Page</a>
+
+{% else %}
+    <strong>The specified category does not exist.</strong>
+{% endif %}
 
 </body>
 </html>
